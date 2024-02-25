@@ -9,16 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = CoinsViewModel()
+
     
     var body: some View {
         HStack {
-            Text(viewModel.coin)
-            Text(viewModel.price)
+            if let errorMsg = viewModel.errorMsg {
+                Text("\(errorMsg)")
+                
+            } else {
+                
+                Text(viewModel.price)
+                Text(viewModel.coin)
+            }
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
