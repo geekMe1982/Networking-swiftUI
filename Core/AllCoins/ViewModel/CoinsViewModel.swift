@@ -10,6 +10,7 @@ import Foundation
 class CoinsViewModel: ObservableObject {
     @Published var coin = ""
     @Published var price = ""
+    @Published var errorMsg: String?
     
     init() {
         fetchPrice(coin: "ethereum")
@@ -17,14 +18,26 @@ class CoinsViewModel: ObservableObject {
     
     func fetchPrice(coin: String) {
         print(Thread.current)
-
-        
         let urlString = "https://api.coingecko.com/api/v3/simple/price?ids=\(coin)&vs_currencies=usd"
         guard let url = URL(string: urlString) else { return }
         
         print("fetching data...")
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+            
+            guard httpResponse.statusCode == 200 else {
+                print(httpResponse.statusCode)
+                return
+            }
+                    
+                    
             //checking the current thread
             print(Thread.current)
             // raw data
@@ -49,9 +62,12 @@ class CoinsViewModel: ObservableObject {
                 self.coin = coin.capitalized
                 self.price = "$\(price)"
             }
-          
         }.resume()
         print("Did reach EOF")
     }
-    
+}
+
+enum validation: Error {
+    case invalidURL
+    case invalidData
 }
