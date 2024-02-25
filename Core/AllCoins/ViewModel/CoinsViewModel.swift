@@ -13,13 +13,17 @@ class CoinsViewModel: ObservableObject {
     @Published var errorMsg: String?
     
     private let service = CoinDataService()
+    
     init() {
-        fetchPrice(coin: "bitcoin")
+        service.fetchCoins()
     }
     
     func fetchPrice(coin: String) {
-        service.fetchPrice(coin: coin) { priceFromService in
-            
+        service.fetchPrice(coin: coin) { priceFromService  in
+            DispatchQueue.main.async {
+                self.price = "\(priceFromService)"
+                self.coin = coin
+            }
         }
     }
 }

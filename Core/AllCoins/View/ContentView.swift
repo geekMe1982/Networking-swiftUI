@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var viewModel = CoinsViewModel()
 
-    
     var body: some View {
         HStack {
             if let errorMsg = viewModel.errorMsg {
@@ -18,8 +17,8 @@ struct ContentView: View {
                 
             } else {
                 
-                Text(viewModel.price)
                 Text(viewModel.coin)
+                Text(viewModel.price)
             }
         }
         .padding()
