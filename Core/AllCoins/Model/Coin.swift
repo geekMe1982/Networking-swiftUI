@@ -11,6 +11,6 @@ struct Coin: Codable {
     let id: String
     let symbol: String
     let name: String
-    let currentPrice: Double
-    let marketCapRank: Int
+//    let currentPrice: Double
+//    let marketCapRank: Int
 }
