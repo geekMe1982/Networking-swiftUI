@@ -9,22 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = CoinsViewModel()
-
+    
     var body: some View {
-        HStack {
-            if let errorMsg = viewModel.errorMsg {
-                Text("\(errorMsg)")
-                
-            } else {
-                
-                Text(viewModel.coin)
-                Text(viewModel.price)
+        List {
+            ForEach(viewModel.coins) { coin in
+                Text(coin.name)
             }
         }
-        .padding()
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    ContentView()
+}
