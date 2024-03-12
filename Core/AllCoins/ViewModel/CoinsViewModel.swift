@@ -18,7 +18,6 @@ class CoinsViewModel: ObservableObject {
     }
     
     func fetchCoins() {
-        
         service.fetchCoins{ coins in
             DispatchQueue.main.async {
                 self.coins = coins

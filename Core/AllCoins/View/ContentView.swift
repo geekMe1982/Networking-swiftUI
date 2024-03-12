@@ -13,7 +13,16 @@ struct ContentView: View {
     var body: some View {
         List {
             ForEach(viewModel.coins) { coin in
-                Text(coin.name)
+                HStack{
+                    Text("\(coin.marketCapRank)")
+                        .foregroundColor(.gray)
+                    VStack(alignment: .leading){
+                        Text(coin.name)
+                            .fontWeight(.semibold)
+                        Text(coin.symbol.uppercased())
+                            .font(.footnote)
+                    }
+                }
             }
         }
     }
