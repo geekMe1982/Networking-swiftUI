@@ -22,7 +22,7 @@ class CoinDataService {
                 print(coin.id)
             }
             completion(coins)
-            
-        }   .resume()
+        }   
+        .resume()
     }
 }
