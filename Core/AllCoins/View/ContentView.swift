@@ -24,6 +24,10 @@ struct ContentView: View {
                     }
                 }
             }
+        }.overlay {
+            if let error = viewModel.errorMsg {
+                Text(error)
+            }
         }
     }
 }
