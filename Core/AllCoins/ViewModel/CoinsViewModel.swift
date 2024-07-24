@@ -28,7 +28,6 @@ class CoinsViewModel: ObservableObject {
                     self.errorMsg = error.localizedDescription
                 }
             }
-            
         }
     }
 }
