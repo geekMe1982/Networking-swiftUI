@@ -15,8 +15,12 @@ class CoinsViewModel: ObservableObject {
     private let service = CoinDataService()
     
     init() {
-        fetchCoins()
+        Task {
+            try await fetchCoins()
+        }
     }
     
-    
+    func fetchCoins() async throws{
+        try await service.fetchData()
+    }
 }
