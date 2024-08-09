@@ -18,16 +18,5 @@ class CoinsViewModel: ObservableObject {
         fetchCoins()
     }
     
-    func fetchCoins() {
-        service.fetchCoins { Result in
-            DispatchQueue.main.async {
-                switch Result {
-                case .success(let coins):
-                    self.coins = coins
-                case .failure(let error):
-                    self.errorMsg = error.localizedDescription
-                }
-            }
-        }
-    }
+    
 }
